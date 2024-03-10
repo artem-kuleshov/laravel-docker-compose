@@ -23,15 +23,12 @@ services:
         - db
 
   db:
-    image: mysql:8.0
+    image: postgres:16
     restart: always
-    volumes:
-      - ./tmp_folder/db:/var/lib/mysql
     environment:
-        MYSQL_DATABASE: laravel-docker
-        MYSQL_ROOT_PASSWORD: root
+        POSTGRES_PASSWORD: root
     ports:
-        - 8101:3306
-    command: mysqld --character-set-server=utf8 --collation-server=utf8_unicode_ci
+        - 8101:5432
+    volumes:
+        - ./postgres-data:/var/lib/postgresql/data
     container_name: db
-
